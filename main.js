@@ -57,15 +57,26 @@ class Calculator {
         this.previousOperand = '';
     }
 
+    displayNumber(number) {
+        const stringNum = number.toString();
+        const integerDigits = parseFloat(stringNum.split('.')[0]);
+        const decimalDigits = stringNum.split('.')[1];
+        let integerDisplay;
+        if (isNaN(integerDigits)) integerDisplay = '';
+        else {
+            integerDisplay = integerDigits.toLocaleString('en', {
+                maximumFractionDigits: 0
+            });
+        }
+        if (decimalDigits != null) return `${integerDisplay}.${decimalDigits}`
+        else return integerDisplay;
+    }
 
     displayUpdate() {
-        this.currentOperandElement.innerText = this.currentOperand;
-        this.previousOperandElement.innerText = this.previousOperand;
+        this.currentOperandElement.innerText = this.displayNumber(this.currentOperand);
         if (this.operation != null) {
-            this.previousOperandElement.innerText = `${this.previousOperand} ${this.operation}`;
+            this.previousOperandElement.innerText = `${this.displayNumber(this.previousOperand)} ${this.operation}`;
         } else this.previousOperandElement.innerText = '';
-
-
     }
 }
 
