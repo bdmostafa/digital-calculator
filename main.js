@@ -1,3 +1,4 @@
+// Calculator constructor class
 class Calculator {
     constructor(previousOperandElement, currentOperandElement) {
         this.previousOperandElement = previousOperandElement;
@@ -103,7 +104,6 @@ operationsBtn.forEach(button => {
     button.addEventListener('click', () => {
         calculator.chooseOperation(button.innerText)
         calculator.displayUpdate();
-        console.log(button.innerText)
     })
 })
 
